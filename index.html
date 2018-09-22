@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,85 @@
     <title>Star Wars Arena Combat RPG</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        .char figure img {
+            height: 5rem;
+        }
+        ul.char li figure {
+            display: flex;
+            flex-flow: column nowrap
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-row {
+            flex-flow: row wrap
+        }
+
+    </style>
 </head>
+
 <body>
-    <h1 class="font-special">STAR WARS RPG&#123;</h1>
-    <ul>
-        <li>Character 1</li>
-        <li>Character 2</li>
-        <li>Character 3</li>
-        <li>Character 4</li>
+    <h1 class="font-special">STAR WARS RPG</h1>
+    <ul class="char flex flex-row">
+        <li>
+            <figure>
+                Character 1
+                <img src="./assets/images/captainphasma.jpeg" alt="Captain Phasma">
+                HP Ch 1
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 2
+                <img src="./assets/images/chewbacca.jpeg" alt="Chewbacca">
+                HP Ch 2
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 3
+                <img src="./assets/images/finn.jpeg" alt="Finn">
+                HP Ch 3
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 4
+                <img src="./assets/images/kyloren.jpeg" alt="Kylo Ren">
+                HP Ch 4
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 5
+                <img src="./assets/images/luke.jpeg" alt="Luke Skywalker">
+                HP Ch 5
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 6
+                <img src="./assets/images/poedameron.jpeg" alt="Poe Dameron">
+                HP Ch 6
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 7
+                <img src="./assets/images/rey.jpeg" alt="Rey">
+                HP Ch 7
+            </figure>
+        </li>
+        <li>
+            <figure>
+                Character 8
+                <img src="./assets/images/snoke.jpeg" alt="Snoke">
+                HP Ch 8
+            </figure>
+        </li>
     </ul>
     <h2>Your Character</h2>
     <h2>Enemies Available to Attack</h2>
@@ -22,4 +94,5 @@
     <button>Attack</button>
     <h2>Defender</h2>
 </body>
+
 </html>

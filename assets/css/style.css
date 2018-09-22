@@ -1,8 +1,7 @@
 /* Star Wars Font */
 @font-face {
   font-family: "StarJedi Special Edition";
-  src: 
-    url("./../fonts/STJEDISE.eot") format("eot"), 
+  src: url("./../fonts/STJEDISE.eot") format("eot"),
     url("./../fonts/STJEDISE.woff") format("woff"),
     url("./../fonts/STJEDISE.ttf") format("truetype"),
     url("./../fonts/STJEDISE.svg#StarJediSpecialEdition") format("svg");
@@ -10,8 +9,21 @@
   font-style: normal;
 }
 
-.font-special { font-family: "StarJedi Special Edition"; }
+.font-special {
+  font-family: "StarJedi Special Edition";
+}
 
 h1 {
-    font-size: 5rem;
+  font-size: 4rem;
+}
+
+body {
+  /* color: #777777; */
+  background-image: url("./../images/bg-MillFalc.jpeg"); /* Background pattern from Toptal Subtle Patterns */
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  /* display: flex;
+  flex-direction: column; */
+  min-height: 100vh;
 }
