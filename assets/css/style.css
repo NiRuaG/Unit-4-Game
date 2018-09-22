@@ -1,0 +1,17 @@
+/* Star Wars Font */
+@font-face {
+  font-family: "StarJedi Special Edition";
+  src: 
+    url("./../fonts/STJEDISE.eot") format("eot"), 
+    url("./../fonts/STJEDISE.woff") format("woff"),
+    url("./../fonts/STJEDISE.ttf") format("truetype"),
+    url("./../fonts/STJEDISE.svg#StarJediSpecialEdition") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font-special { font-family: "StarJedi Special Edition"; }
+
+h1 {
+    font-size: 5rem;
+}
