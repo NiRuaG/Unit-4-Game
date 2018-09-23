@@ -1,3 +1,4 @@
+"use strict";
 
 let SWFighter = (hp, attack, counter) => {
   return {
@@ -39,3 +40,31 @@ let swRPG_GAME = {
   }
 };
 
+let DOM_IDs = {
+  fighter1  : null,
+  fighter2  : null,
+  fighter3  : null,
+  fighter4  : null,
+};
+
+
+$(document).ready(function() {
+  swRPG_GAME.init();
+
+  for (let k of Object.keys(DOM_IDs)) {
+    DOM_IDs[k] = document.getElementById(k);
+  }
+
+  console.log(DOM_IDs);
+
+  $(".char li").on("click", function() {
+    console.log(".char li clicked!");
+    console.log(
+      "Cur states:",
+      swRPG_GAME.STATES,
+      "Cur Characters:",
+      swRPG_GAME.CHARACTERS
+    );
+  });
+
+});
