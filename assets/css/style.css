@@ -16,6 +16,13 @@
 h1 {
   font-size: 5rem;
 }
+/* font has a BIG descender that needs to be cleared */
+h1.font-special {
+  margin-bottom: 3rem; 
+}
+h3.font-special {
+  margin-bottom: 1rem;
+}
 
 body {
   /* color: #777777; */
