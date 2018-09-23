@@ -10,24 +10,34 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <style>
         .char figure img {
-            max-height: 6rem;
+            height: 6rem;
             max-width: 100%;
+        }
+
+        .char .placeHolder {
+            visibility: hidden;
+            /* pointer-events: none; */
         }
 
         .char figure {
             display: flex;
             flex-flow: column nowrap;
-            border: 0.25rem pink solid;
+            border: 0.25rem white solid;
             margin-bottom: 0.5rem;
             margin-right: 0.5rem;
+            background: white;
+        }
+
+        ul.char li:hover figure {
+            border-color: black;
         }
 
         #playerChar figure {
             background: blue;
         }
 
-        ul.char li figure:hover {
-            border-color: purple;
+        #enemyChars figure {
+            background: red;
         }
 
         .flex {
@@ -44,33 +54,36 @@
 <body>
     <h1 class="font-special">STAR WARS RPG</h1>
     <h3 class="font-special">instructions:</h3>
-    <ul class="char flex flex-row">
+    <ul id="fighterLineup" class="char flex flex-row">
+        <li class="placeHolder">
+            <figure><img></figure>
+        </li>
         <li id="fighter1">
             <figure>
-                Character 1
+                <p>Character 1</p>
                 <img src="./assets/images/captainphasma.jpeg" alt="Captain Phasma">
-                HP Ch 1
+                <p>HP Ch 1</p>
             </figure>
         </li>
         <li id="fighter2">
             <figure>
-                Character 2
+                <p>Character 2</p>
                 <img src="./assets/images/chewbacca.jpeg" alt="Chewbacca">
-                HP Ch 2
+                <p>HP Ch 2</p>
             </figure>
         </li>
         <li id="fighter3">
             <figure>
-                Character 3
+                <p>Character 3</p>
                 <img src="./assets/images/finn.jpeg" alt="Finn">
-                HP Ch 3
+                <p>HP Ch 3</p>
             </figure>
         </li>
         <li id="fighter4">
             <figure>
-                Character 4
+                <p>Character 4</p>
                 <img src="./assets/images/kyloren.jpeg" alt="Kylo Ren">
-                HP Ch 4
+                <p>HP Ch 4</p>
             </figure>
         </li>
 
@@ -107,11 +120,17 @@
     <section>
         <h2>Your Character</h2>
         <ul id="playerChar" class="char flex flex-row">
+            <li class="placeHolder">
+                <figure>&nbsp;<img>&nbsp;</figure>
+            </li>
         </ul>
     </section>
     <section>
         <h2>Enemies Available to Attack</h2>
         <ul id="enemyChars" class="char flex flex-row">
+            <li class="placeHolder">
+                <figure>&nbsp;<img>&nbsp;</figure>
+            </li>
         </ul>
     </section>
     <h2>Fight Section</h2>
