@@ -45,8 +45,19 @@ let DOM_IDs = {
   fighter2  : null,
   fighter3  : null,
   fighter4  : null,
+  playerChar: null,
 };
 
+function clickCharacter(ele) {
+  console.log("--- Clicking Character ---");
+  console.log(`You are clicking: ${ele.id}`);
+  if (swRPG_GAME.STATES.initialized && !swRPG_GAME.STATES.playerCharSelected) {
+    console.log(`State indicates clicking means you're selecting your character`);
+    swRPG_GAME.STATES.playerCharSelected = true;
+    $(DOM_IDs.playerChar).append(ele);
+    
+  }
+}
 
 $(document).ready(function() {
   swRPG_GAME.init();
@@ -65,6 +76,7 @@ $(document).ready(function() {
       "Cur Characters:",
       swRPG_GAME.CHARACTERS
     );
+    clickCharacter(this);
   });
 
 });
