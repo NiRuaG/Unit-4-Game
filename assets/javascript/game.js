@@ -61,13 +61,16 @@ function clickCharacter(ele) {
       .children(":not(.placeHolder)")
       .each(function(_, v) {
         // move the fighters from the line up into either the player's character or enemies section
-        $(v.id === ele.id ? DOM_IDs.playerChar : DOM_IDs.enemyChars)
-        .append(this);
+        $(v.id === ele.id ? DOM_IDs.playerChar : DOM_IDs.enemyChars).append(
+          this
+        );
       });
+    // show
+    console.log($(".toggle1"));
+    $(".toggle1").toggleClass("toggleVisible");
   } else if (
-    swRPG_GAME.STATES.playerCharSelected &&
-    !swRPG_GAME.STATES.enemeyCharSelected
-  ) {
+     swRPG_GAME.STATES.playerCharSelected &&
+    !swRPG_GAME.STATES.enemeyCharSelected) {
     console.log(
       "State indicates this click means selecting an enemy character"
     );

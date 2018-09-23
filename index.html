@@ -9,15 +9,18 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <style>
+        .toggleVisible {
+            visibility: hidden;
+        }
         .char figure img {
             height: 6rem;
             max-width: 100%;
         }
 
-        .char .placeHolder {
+        /* .char .placeHolder {
             visibility: hidden;
-            /* pointer-events: none; */
-        }
+            /* pointer-events: none; *//*
+        } */
 
         .char figure {
             display: flex;
@@ -28,7 +31,7 @@
             background: white;
         }
 
-        ul.char li:hover figure {
+        ul.char figure:hover {
             border-color: black;
         }
 
@@ -52,42 +55,45 @@
 </head>
 
 <body>
-    <h1 class="font-special">STAR WARS RPG</h1>
-    <h3 class="font-special">instructions:</h3>
-    <ul id="fighterLineup" class="char flex flex-row">
-        <li class="placeHolder">
+    <header>
+        <h1 class="font-special">STAR WARS RPG</h1>
+    </header>
+    <main>
+        <h3 class="font-special">instructions:</h3>
+        <ul id="fighterLineup" class="char flex flex-row">
+            <!-- <li class="placeHolder">
             <figure><img></figure>
-        </li>
-        <li id="fighter1">
-            <figure>
-                <p>Character 1</p>
-                <img src="./assets/images/captainphasma.jpeg" alt="Captain Phasma">
-                <p>HP Ch 1</p>
-            </figure>
-        </li>
-        <li id="fighter2">
-            <figure>
-                <p>Character 2</p>
-                <img src="./assets/images/chewbacca.jpeg" alt="Chewbacca">
-                <p>HP Ch 2</p>
-            </figure>
-        </li>
-        <li id="fighter3">
-            <figure>
-                <p>Character 3</p>
-                <img src="./assets/images/finn.jpeg" alt="Finn">
-                <p>HP Ch 3</p>
-            </figure>
-        </li>
-        <li id="fighter4">
-            <figure>
-                <p>Character 4</p>
-                <img src="./assets/images/kyloren.jpeg" alt="Kylo Ren">
-                <p>HP Ch 4</p>
-            </figure>
-        </li>
+        </li> -->
+            <li id="fighter1">
+                <figure>
+                    <p>Character 1</p>
+                    <img src="./assets/images/captainphasma.jpeg" alt="Captain Phasma">
+                    <p>HP Ch 1</p>
+                </figure>
+            </li>
+            <li id="fighter2">
+                <figure>
+                    <p>Character 2</p>
+                    <img src="./assets/images/chewbacca.jpeg" alt="Chewbacca">
+                    <p>HP Ch 2</p>
+                </figure>
+            </li>
+            <li id="fighter3">
+                <figure>
+                    <p>Character 3</p>
+                    <img src="./assets/images/finn.jpeg" alt="Finn">
+                    <p>HP Ch 3</p>
+                </figure>
+            </li>
+            <li id="fighter4">
+                <figure>
+                    <p>Character 4</p>
+                    <img src="./assets/images/kyloren.jpeg" alt="Kylo Ren">
+                    <p>HP Ch 4</p>
+                </figure>
+            </li>
 
-        <!-- <li>
+            <!-- <li>
             <figure>
                 Character 5
                 <img src="./assets/images/luke.jpeg" alt="Luke Skywalker">
@@ -116,26 +122,29 @@
             </figure>
         </li> -->
 
-    </ul>
-    <section>
-        <h2>Your Character</h2>
-        <ul id="playerChar" class="char flex flex-row">
-            <li class="placeHolder">
-                <figure>&nbsp;<img>&nbsp;</figure>
-            </li>
         </ul>
-    </section>
-    <section>
-        <h2>Enemies Available to Attack</h2>
-        <ul id="enemyChars" class="char flex flex-row">
-            <li class="placeHolder">
-                <figure>&nbsp;<img>&nbsp;</figure>
-            </li>
-        </ul>
-    </section>
-    <h2>Fight Section</h2>
-    <button>Attack</button>
-    <h2>Defender</h2>
+        <section class="toggle1 toggleVisible">
+            <h2>Your Character</h2>
+            <ul id="playerChar" class="char flex flex-row">
+                <!-- <li class="placeHolder">
+                    <figure>&nbsp;<img>&nbsp;</figure>
+                </li> -->
+            </ul>
+        </section>
+        <section class="toggle1 toggleVisible">
+            <h2>Enemies Available to Attack</h2>
+            <ul id="enemyChars" class="char flex flex-row">
+                <!-- <li class="placeHolder">
+                    <figure>&nbsp;<img>&nbsp;</figure>
+                </li> -->
+            </ul>
+        </section>
+        <section class="toggle1 toggleVisible">
+            <h2>Fight Section</h2>
+            <button>Attack</button>
+            <h2>Defender</h2>
+        </section>
+    </main>
     <script src="./assets/javascript/game.js"></script>
 </body>
 
