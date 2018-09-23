@@ -46,6 +46,7 @@ let DOM_IDs = {
   fighter3  : null,
   fighter4  : null,
   playerChar: null,
+  enemyChars: null,
 };
 
 function clickCharacter(ele) {
@@ -57,7 +58,12 @@ function clickCharacter(ele) {
     $(DOM_IDs.playerChar).append(ele);
     
   }
+  else if (swRPG_GAME.STATES.playerCharSelected && !swRPG_GAME.STATES.enemeyCharSelected){
+    console.log("State indicates this click means you're selecting enemy character");
+    swRPG_GAME.STATES.enemeyCharSelected = true;
 }
+}
+
 
 $(document).ready(function() {
   swRPG_GAME.init();
