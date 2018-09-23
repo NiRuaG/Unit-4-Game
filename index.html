@@ -10,11 +10,24 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <style>
         .char figure img {
-            height: 5rem;
+            max-height: 6rem;
+            max-width: 100%;
         }
-        ul.char li figure {
+
+        .char figure {
             display: flex;
-            flex-flow: column nowrap
+            flex-flow: column nowrap;
+            border: 0.25rem pink solid;
+            margin-bottom: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        #playerChar figure {
+            background: blue;
+        }
+
+        ul.char li figure:hover {
+            border-color: purple;
         }
 
         .flex {
@@ -24,7 +37,6 @@
         .flex-row {
             flex-flow: row wrap
         }
-
     </style>
 </head>
 
