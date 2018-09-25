@@ -27,7 +27,7 @@ h3.font-special {
 body {
   /* color: #777777; */
   background-image: url("./../images/bg-MillFalc.jpeg"); /* Background pattern from Toptal Subtle Patterns */
-  background-size: 100%;
+  /* background-size: 100%; */
   background-repeat: no-repeat;
   background-attachment: scroll;
   /* display: flex;

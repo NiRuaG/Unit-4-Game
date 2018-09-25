@@ -12,14 +12,16 @@
         .toggleVisible {
             visibility: hidden;
         }
+
         .char figure img {
-            height: 6rem;
+            max-height: 7rem;
             max-width: 100%;
         }
 
         /* .char .placeHolder {
             visibility: hidden;
-            /* pointer-events: none; *//*
+            /* pointer-events: none; */
+        /*
         } */
 
         .char figure {
@@ -35,11 +37,15 @@
             border-color: black;
         }
 
-        #playerChar figure {
+        #player figure {
             background: blue;
         }
 
-        #enemyChars figure {
+        #defender figure {
+            background: green;
+        }
+
+        #enemies figure {
             background: red;
         }
 
@@ -125,7 +131,7 @@
         </ul>
         <section class="toggle1 toggleVisible">
             <h2>Your Character</h2>
-            <ul id="playerChar" class="char flex flex-row">
+            <ul id="player" class="char flex flex-row">
                 <!-- <li class="placeHolder">
                     <figure>&nbsp;<img>&nbsp;</figure>
                 </li> -->
@@ -133,7 +139,7 @@
         </section>
         <section class="toggle1 toggleVisible">
             <h2>Enemies Available to Attack</h2>
-            <ul id="enemyChars" class="char flex flex-row">
+            <ul id="enemies" class="char flex flex-row">
                 <!-- <li class="placeHolder">
                     <figure>&nbsp;<img>&nbsp;</figure>
                 </li> -->
@@ -141,8 +147,13 @@
         </section>
         <section class="toggle1 toggleVisible">
             <h2>Fight Section</h2>
-            <button>Attack</button>
+            <button id="attack">Attack</button>
             <h2>Defender</h2>
+            <ul id="defender" class="char flex flex-row">
+                <!-- <li class="placeHolder">
+                        <figure>&nbsp;<img>&nbsp;</figure>
+                    </li> -->
+            </ul>
         </section>
     </main>
     <script src="./assets/javascript/game.js"></script>
