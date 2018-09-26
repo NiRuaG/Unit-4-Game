@@ -12,7 +12,7 @@
         .toggleVisible {
             visibility: hidden;
         }
-        
+
         .locked {
             pointer-events: none;
         }
@@ -38,7 +38,7 @@
         }
 
         ul.char figure:hover {
-            border-color: black;
+            border-color: gold;
         }
 
         #player figure {
@@ -46,7 +46,8 @@
         }
 
         #defender figure {
-            background: green;
+            background: black;
+            color: white
         }
 
         #enemies figure {
@@ -133,7 +134,7 @@
         </li> -->
 
         </ul>
-        <section class="toggle1 toggleVisible">
+        <section class="showOnPlayerSelect toggleVisible">
             <h2>Your Character</h2>
             <ul id="player" class="char flex flex-row">
                 <!-- <li class="placeHolder">
@@ -141,23 +142,24 @@
                 </li> -->
             </ul>
         </section>
-        <section class="toggle1 toggleVisible">
-            <h2>Enemies Available to Attack</h2>
+        <section class="showOnPlayerSelect toggleVisible">
+            <h2>Enemies Left to Defeat</h2>
             <ul id="enemies" class="char flex flex-row">
                 <!-- <li class="placeHolder">
                     <figure>&nbsp;<img>&nbsp;</figure>
                 </li> -->
             </ul>
         </section>
-        <section class="toggle1 toggleVisible">
+        <section class="showOnDefenderSelect toggleVisible">
             <h2>Fight Section</h2>
             <button id="attack">Attack</button>
             <h2>Defender</h2>
             <ul id="defender" class="char flex flex-row">
                 <!-- <li class="placeHolder">
-                        <figure>&nbsp;<img>&nbsp;</figure>
-                    </li> -->
+                            <figure>&nbsp;<img>&nbsp;</figure>
+                        </li> -->
             </ul>
+            <div id="fightSummary"></div>
         </section>
     </main>
     <script src="./assets/javascript/game.js"></script>
