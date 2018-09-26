@@ -20,6 +20,7 @@
         .char figure img {
             max-height: 7rem;
             max-width: 100%;
+            margin: 0.25rem auto;
         }
 
         /* .char .placeHolder {
@@ -27,6 +28,15 @@
             /* pointer-events: none; */
         /*
         } */
+        button#attack, button#restart {
+            /* margin: auto 1rem; */
+        }
+        button#attack:hover {
+            color: red;
+        }
+        button#attack.locked {
+            color: grey;
+        }
 
         .char figure {
             display: flex;
@@ -34,24 +44,33 @@
             border: 0.25rem white solid;
             margin-bottom: 0.5rem;
             margin-right: 0.5rem;
+            margin-left: 0.5rem;
             background: white;
         }
 
         ul.char figure:hover {
-            border-color: gold;
+            border-color: black;
         }
 
         #player figure {
-            background: lightblue;
+            background: gold;
+        }
+
+        .fighter p {
+            text-align: center;
         }
 
         #defender figure {
             background: black;
-            color: white
+            color: white;
+        }
+        .defeated figure {
+            color:red;
         }
 
         #enemies figure {
             background: red;
+            color: black;
         }
 
         .flex {
@@ -59,7 +78,11 @@
         }
 
         .flex-row {
-            flex-flow: row wrap
+            flex-flow: row wrap;
+        }
+        .flex-col {
+            flex-flow: column nowrap;
+            justify-content: center;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -70,7 +93,7 @@
         <h1 class="font-special">STAR WARS RPG</h1>
     </header>
     <main>
-        <h3 class="font-special">instructions:</h3>
+        <h3 class="font-special" style="display: inline-block">instructions:&nbsp;</h3><span id="instructions"></span>
         <ul id="fighterLineup" class="char flex flex-row">
             <!-- <li class="placeHolder">
             <figure><img></figure>
@@ -134,33 +157,41 @@
         </li> -->
 
         </ul>
+
+        <div class="flex flex-row">
+            <section class="showOnPlayerSelect toggleVisible">
+                <h3 class="font-special">Your Character</h3>
+                <ul id="player" class="char flex flex-row">
+                    <!-- <li class="placeHolder">
+                                <figure>&nbsp;<img>&nbsp;</figure>
+                            </li> -->
+                </ul>
+            </section>
+            <div class="flex flex-col">
+                <button id="attack" class="font-special showOnDefenderSelect toggleVisible">Attack</button>
+                <button id="restart" class="font-special showOnGameOver toggleVisible">Restart</button>
+            </div>
+            <section class="showOnDefenderSelect toggleVisible">
+                <!-- <h2>Fight Section</h2> -->
+                <h3 class="font-special">Defender</h3>
+                <ul id="defender" class="char flex flex-row">
+                    <!-- <li class="placeHolder">
+                                            <figure>&nbsp;<img>&nbsp;</figure>
+                                        </li> -->
+                </ul>
+            </section>
+            <div id="fightSummary" class="showOnDefenderSelect toggleVisible"></div>
+        </div>
+
         <section class="showOnPlayerSelect toggleVisible">
-            <h2>Your Character</h2>
-            <ul id="player" class="char flex flex-row">
-                <!-- <li class="placeHolder">
-                    <figure>&nbsp;<img>&nbsp;</figure>
-                </li> -->
-            </ul>
-        </section>
-        <section class="showOnPlayerSelect toggleVisible">
-            <h2>Enemies Left to Defeat</h2>
+            <h3 class="font-special">Enemies Left to Defeat</h3>
             <ul id="enemies" class="char flex flex-row">
                 <!-- <li class="placeHolder">
                     <figure>&nbsp;<img>&nbsp;</figure>
                 </li> -->
             </ul>
         </section>
-        <section class="showOnDefenderSelect toggleVisible">
-            <h2>Fight Section</h2>
-            <button id="attack">Attack</button>
-            <h2>Defender</h2>
-            <ul id="defender" class="char flex flex-row">
-                <!-- <li class="placeHolder">
-                            <figure>&nbsp;<img>&nbsp;</figure>
-                        </li> -->
-            </ul>
-            <div id="fightSummary"></div>
-        </section>
+
     </main>
     <script src="./assets/javascript/game.js"></script>
 </body>

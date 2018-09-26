@@ -21,7 +21,7 @@ h1.font-special {
   margin-bottom: 3rem; 
 }
 h3.font-special {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 body {
@@ -33,4 +33,5 @@ body {
   /* display: flex;
   flex-direction: column; */
   min-height: 100vh;
+  padding-left: 2rem;
 }
