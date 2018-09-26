@@ -28,24 +28,15 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
   padding-left: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
   font-size: 5rem;
 }
 /* special font has a BIG descender that needs to be 'cleared' */
-h1.font-special {
-  margin-bottom: 3rem;
-}
-h3.font-special {
-  margin-bottom: 0.75rem;
-}
-
-/* .char .placeHolder {
-            visibility: hidden;
-            /* pointer-events: none; */
-/*
-} */
+h1.font-special { margin-bottom:    3rem; }
+h3.font-special { margin-bottom: 0.75rem; }
 
 .fighter p {
   text-align: center;
@@ -71,18 +62,14 @@ h3.font-special {
   margin: 0.25rem auto;
 }
 
-button#attack:hover {
-  color: red;
-}
-button#attack.locked {
-  color: grey;
-}
+#attackBtn:hover  { color: red;  }
+#attackBtn.locked { color: grey; }
 
 #fightSummary p {
   margin-left: 1rem;
 }
 
-#player   figure { background: gold;           color: black; }
-#enemies  figure { background: red;            color: black; }
-#defender figure { background: darkslategray;  color: white; }
-#defeated figure { background: black;          color: red;   }
+#playerArea   figure { background: gold;           color: black; }
+#enemiesArea  figure { background: red;            color: black; }
+#defenderArea figure { background: darkslategray;  color: white; }
+#defeatedArea figure { background: black;          color: red;   }

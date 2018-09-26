@@ -15,8 +15,10 @@
     <header>
         <h1 class="font-special">STAR WARS RPG</h1>
     </header>
+    
     <main>
         <h3 class="font-special" style="display: inline-block">instructions:&nbsp;</h3><span id="instructions"></span>
+
         <ul id="fighterLineup" class="flex flex-row">
             <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
             <li id="fighter1" class="fighter">
@@ -58,19 +60,16 @@
         <div class="flex flex-row">
             <section class="showOnPlayerSelect visHide">
                 <h3 class="font-special">Your Character</h3>
-                <ul id="player" class="flex flex-row">
-                    <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
+                <ul id="playerArea" class="flex flex-row">
                 </ul>
             </section>
             <div class="flex flex-col">
-                <button id="attack" class="font-special showOnDefenderSelect visHide">Attack</button>
-                <button id="restart" class="font-special showOnGameOver visHide">Restart</button>
+                <button id="attackBtn"  class="font-special showOnDefenderSelect visHide">Attack</button>
+                <button id="restartBtn" class="font-special showOnGameOver visHide">Restart</button>
             </div>
             <section class="showOnDefenderSelect visHide">
-                <!-- <h2>Fight Section</h2> -->
                 <h3 class="font-special">Defender</h3>
-                <ul id="defender" class="flex flex-row">
-                    <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
+                <ul id="defenderArea" class="flex flex-row">
                 </ul>
             </section>
             <div id="fightSummary" class="showOnDefenderSelect visHide"></div>
@@ -78,15 +77,13 @@
 
         <section class="showOnPlayerSelect visHide">
             <h3 class="font-special">Enemies Left to Defeat</h3>
-            <ul id="enemies" class="flex flex-row">
-                <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
+            <ul id="enemiesArea" class="flex flex-row">
             </ul>
         </section>
 
         <section class="showOnDefenderSelect visHide">
             <h3 class="font-special">Defeated Enemies</h3>
-            <ul id="defeated" class="flex flex-row">
-                <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
+            <ul id="defeatedArea" class="flex flex-row">
             </ul>
         </section>
     </main>
