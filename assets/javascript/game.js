@@ -5,6 +5,7 @@ $(document).ready(function() {
     return {
       Name: name,
       HP: hp,
+      Attack_Base: attack,
       Attack: attack,
       Counter: counter
     };
@@ -13,15 +14,18 @@ $(document).ready(function() {
   let swRPG_GAME = {
     // CONSTANTS
     CHARACTERS: {
-      fighter1: SWFighter("Captain Phasma", 175, 10, 5),
-      fighter2: SWFighter("Chewbacca", 100, 6, 10),
-      fighter3: SWFighter("Finn", 150, 14, 20),
-      fighter4: SWFighter("Kylo Ren", 200, 12, 15)
+      fighter1: SWFighter("Captain Phasma", 100, 10, 10  ),
+      fighter2: SWFighter("Chewbacca"     , 100, 10, 10 ),
+      fighter3: SWFighter("Finn"          , 100, 10, 10 ),
+      fighter4: SWFighter("Kylo Ren"      , 100, 10, 10 ),
       // Luke     : null,
       // Poe      : null,
       // Rey      : null,
       // Snoke    : null
     },
+
+    playerCharKey: "",
+    defenderCharKey: "",
 
     // STEPS/STATES
     // 1. select your character -> playerCharSelected
@@ -29,20 +33,37 @@ $(document).ready(function() {
     // 3. Fight! -> Fighting
     // 4. fightfinished => playerChar HP = 0 or enemydefender hp =0
 
-    STATES: {
+    States: {
       initialized: false,
       playerCharSelected: false,
       defenderSelected: false,
       fighting: false
     },
 
-    playerChar: "",
-    defenderChar: "",
-
     init() {
       console.log("--- INITIALIZING GAME ---");
-      this.STATES.initialized = true;
-    }
+      this.States.initialized = true;
+    },
+
+    FIGHT_RESULTS: {
+        WIN : "win",
+        LOSS: "loss",
+        WIP : "wip",
+    },
+
+      fight() {
+            player = this.CHARACTERS[this.playerCharKey  ];
+          defender = this.CHARACTERS[this.defenderCharKey];
+
+          defender.HP     -= player.Attack
+            player.Attack += player.Attack_Base
+          if (defender.HP <= 0) { return swRPG_GAME.FIGHT_RESULTS.WIN; }
+
+          player.HP -= defender.Counter
+          if (player.HP <= 0) { return swRPG_GAME.FIGHT_RESULTS.LOSS; }
+
+          return swRPG_GAME.FIGHT_RESULTS.WIP;
+      }
   };
 
   //.fighterName
@@ -70,14 +91,14 @@ $(document).ready(function() {
     console.log("--- Clicking Character ---");
     // console.log(`You are clicking: ${ele.id}`);
     if (
-      swRPG_GAME.STATES.initialized &&
-      !swRPG_GAME.STATES.playerCharSelected
+      swRPG_GAME.States.initialized &&
+      !swRPG_GAME.States.playerCharSelected
     ) {
     //   console.log(
     //     "State indicates this click means selecting player character"
     //   );
-      swRPG_GAME.STATES.playerCharSelected = true;
-      swRPG_GAME.playerChar = ele.id;
+      swRPG_GAME.States.playerCharSelected = true;
+      swRPG_GAME.playerCharKey = ele.id;
       // move the fighters from the line up into either the player's character or enemies section
       $(DOM_IDs.fighterLineup)
         .children() //.children(":not(.placeHolder)")
@@ -91,13 +112,13 @@ $(document).ready(function() {
       // toggle on first step state
       $(".toggle1").toggleClass("toggleVisible");
     } else if (
-      swRPG_GAME.STATES.playerCharSelected &&
-      !swRPG_GAME.STATES.defenderSelected
+      swRPG_GAME.States.playerCharSelected &&
+      !swRPG_GAME.States.defenderSelected
     ) {
     //   console.log(
     //     "State indicates this click means selecting an enemy as the defender"
     //   );
-      if (ele.id === swRPG_GAME.playerChar) {
+      if (ele.id === swRPG_GAME.playerCharKey) {
         // can't select yourself as defender - shouldn't be able to happen with locked class but just in case
         return;
       }
@@ -107,8 +128,8 @@ $(document).ready(function() {
         .find(`.${DOM_CLASS_FIGHTER}`)
         .addClass(DOM_CLASS_LOCK);
 
-      swRPG_GAME.STATES.defenderSelected = true;
-      swRPG_GAME.defenderChar = ele.id;
+      swRPG_GAME.States.defenderSelected = true;
+      swRPG_GAME.defenderCharKey = ele.id;
       $(DOM_IDs.defender).append(ele);
     }
   }
@@ -116,11 +137,28 @@ $(document).ready(function() {
   function attackChar() {
     console.log("--- Fighting ---");
 
-    if (swRPG_GAME.STATES.defenderSelected) {
+    if (swRPG_GAME.States.defenderSelected) {
     //   console.log("STATE says defender is selected.");
-      swRPG_GAME.STATES.fighting = true;
-      console.log(`${swRPG_GAME.playerChar} attacking ${swRPG_GAME.defenderChar}`);
-      
+      swRPG_GAME.States.fighting = true;
+      console.log(`${swRPG_GAME.playerCharKey} attacking ${swRPG_GAME.defenderCharKey}`);
+      let result = swRPG_GAME.fight();
+
+      // Update DOM
+      [swRPG_GAME.playerCharKey, swRPG_GAME.defenderCharKey].forEach(f => {
+        $(`#${f} .${DOM_CLASS_FIGHTER_HP}`).text(swRPG_GAME.CHARACTERS[f].HP);
+      });
+
+
+      if (result !== swRPG_GAME.FIGHT_RESULTS.WIP) {
+          swRPG_GAME.States.defenderSelected = false;
+      }
+
+      if (result === swRPG_GAME.FIGHT_RESULTS.WIN){
+          console.log("WIN!")
+      }
+      else if (result === swRPG_GAME.FIGHT_RESULTS.LOSS){
+          console.log("LOSS")
+      }
     }
   }
 
@@ -142,7 +180,7 @@ $(document).ready(function() {
   ////// CLICK FUNCTIONS //////
   $(".char li").on("click", function() {
     // console.log(".char li clicked!");
-    // console.log("Cur states:", swRPG_GAME.STATES, "Cur Characters:", swRPG_GAME.CHARACTERS ); 
+    // console.log("Cur states:", swRPG_GAME.States, "Cur Characters:", swRPG_GAME.CHARACTERS ); 
     clickCharacter(this);
   });
 
@@ -150,7 +188,7 @@ $(document).ready(function() {
     // console.log("attack clicked!");
     // console.log(
     //   "Cur states:",
-    //   swRPG_GAME.STATES,
+    //   swRPG_GAME.States,
     //   "Cur Characters:",
     //   swRPG_GAME.CHARACTERS
     // );
