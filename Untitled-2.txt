@@ -1,0 +1,130 @@
+https://repl.it/repls/
+
+class fighter():
+  def __init__(self, hp, b_atk, rx):
+    self.hp = hp
+    self.b_atk = b_atk
+    self.atk = b_atk
+    self.rx = rx
+
+F1HP, F1ATK, F1RX = 135, 8,  40
+F2HP, F2ATK, F2RX = 150, 6,  20
+F3HP, F3ATK, F3RX = 125, 15,  7
+F4HP, F4ATK, F4RX = 165, 8 , 12
+
+f1 = fighter(F1HP, F1ATK, F1RX)
+f2 = fighter(F2HP, F2ATK, F2RX)
+f3 = fighter(F3HP, F3ATK, F3RX)
+f4 = fighter(F4HP, F4ATK, F4RX)
+
+def reset(f1,f2,f3,f4):
+  f1.hp, f1.atk = F1HP, F1ATK
+  f2.hp, f2.atk = F2HP, F2ATK
+  f3.hp, f3.atk = F3HP, F3ATK
+  f4.hp, f4.atk = F4HP, F4ATK
+
+
+def fight(f1, f2):
+  if (f1.hp <= 0): return
+  if (f2.hp <= 0): return
+
+  while(True):
+    f2.hp -= f1.atk
+    f1.atk += f1.b_atk
+
+    if (f2.hp <= 0): return
+
+    f1.hp -= f2.rx
+
+    if (f1.hp <= 0): return
+
+
+def fightSeq(fm, fseq, result):
+  for df in fseq:
+    fight(fm, df)
+  
+  if (fm.hp > 0 and result):
+    return True
+  if (fm.hp <= 0 and not result):
+    return True
+
+  print(fm.hp, fm.atk)
+  print([df.hp for df in fseq])
+  return False
+
+print("FIGHTER 1")
+#1
+print("234" if not fightSeq(f1,[f2,f3,f4],1) else "")
+#2
+reset(f1,f2,f3,f4)
+print("243" if not fightSeq(f1,[f2,f4,f3],0) else "")
+#3
+reset(f1,f2,f3,f4)
+print("324" if not fightSeq(f1,[f3,f2,f4],1) else "")
+#4
+reset(f1,f2,f3,f4)
+print("342" if not fightSeq(f1,[f3,f4,f2],1) else "")
+#5
+reset(f1,f2,f3,f4)
+print("423" if not fightSeq(f1,[f4,f2,f3],1) else "")
+#6
+reset(f1,f2,f3,f4)
+print("432" if not fightSeq(f1,[f4,f3,f2],1) else "")
+
+print("FIGHTER 2")
+#1
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f1,f3,f4])
+#2
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f1,f4,f3])
+#3
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f3,f1,f4])
+#4
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f3,f4,f1])
+#5
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f4,f1,f3])
+#6
+reset(f1,f2,f3,f4)
+fightSeq(f2,[f4,f3,f1])
+print("FIGHTER 3")
+#1
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f1,f2,f4])
+#2
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f1,f4,f2])
+#3
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f2,f1,f4])
+#4
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f2,f4,f1])
+#5
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f4,f1,f2])
+#6
+reset(f1,f2,f3,f4)
+fightSeq(f3,[f4,f2,f1])
+print("FIGHTER 4")
+#1
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f1,f2,f3])
+#2
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f1,f3,f2])
+#3
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f2,f1,f3])
+#4
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f2,f3,f1])
+#5
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f3,f1,f2])
+#6
+reset(f1,f2,f3,f4)
+fightSeq(f4,[f3,f2,f1])
