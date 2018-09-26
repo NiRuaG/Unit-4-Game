@@ -8,8 +8,7 @@
     <title>Star Wars Arena Combat RPG</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -19,9 +18,7 @@
     <main>
         <h3 class="font-special" style="display: inline-block">instructions:&nbsp;</h3><span id="instructions"></span>
         <ul id="fighterLineup" class="flex flex-row">
-            <!-- <li class="placeHolder">
-            <figure><img></figure>
-        </li> -->
+            <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
             <li id="fighter1" class="fighter">
                 <figure>
                     <p><span class="fighterName"></span></p>
@@ -51,34 +48,10 @@
                 </figure>
             </li>
 
-            <!-- <li>
-            <figure>
-                Character 5
-                <img src="./assets/images/luke.jpeg" alt="Luke Skywalker">
-                HP Ch 5
-            </figure>
-        </li>
-        <li>
-            <figure>
-                Character 6
-                <img src="./assets/images/poedameron.jpeg" alt="Poe Dameron">
-                HP Ch 6
-            </figure>
-        </li>
-        <li>
-            <figure>
-                Character 7
-                <img src="./assets/images/rey.jpeg" alt="Rey">
-                HP Ch 7
-            </figure>
-        </li>
-        <li>
-            <figure>
-                Character 8
-                <img src="./assets/images/snoke.jpeg" alt="Snoke">
-                HP Ch 8
-            </figure>
-        </li> -->
+            <!-- <li> <figure> Character 5 <img src="./assets/images/luke.jpeg" alt="Luke Skywalker"> HP Ch 5 </figure> </li> -->
+            <!-- <li> <figure> Character 6 <img src="./assets/images/poedameron.jpeg" alt="Poe Dameron"> HP Ch 6 </figure> </li> -->
+            <!-- <li> <figure> Character 7 <img src="./assets/images/rey.jpeg" alt="Rey"> HP Ch 7 </figure> </li> -->
+            <!-- <li> <figure> Character 8 <img src="./assets/images/snoke.jpeg" alt="Snoke"> HP Ch 8 </figure> </li> -->
 
         </ul>
 
@@ -86,9 +59,7 @@
             <section class="showOnPlayerSelect visHide">
                 <h3 class="font-special">Your Character</h3>
                 <ul id="player" class="flex flex-row">
-                    <!-- <li class="placeHolder">
-                                <figure>&nbsp;<img>&nbsp;</figure>
-                            </li> -->
+                    <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
                 </ul>
             </section>
             <div class="flex flex-col">
@@ -99,9 +70,7 @@
                 <!-- <h2>Fight Section</h2> -->
                 <h3 class="font-special">Defender</h3>
                 <ul id="defender" class="flex flex-row">
-                    <!-- <li class="placeHolder">
-                                            <figure>&nbsp;<img>&nbsp;</figure>
-                                        </li> -->
+                    <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
                 </ul>
             </section>
             <div id="fightSummary" class="showOnDefenderSelect visHide"></div>
@@ -110,21 +79,19 @@
         <section class="showOnPlayerSelect visHide">
             <h3 class="font-special">Enemies Left to Defeat</h3>
             <ul id="enemies" class="flex flex-row">
-                <!-- <li class="placeHolder">
-                    <figure>&nbsp;<img>&nbsp;</figure>
-                </li> -->
+                <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
             </ul>
         </section>
 
         <section class="showOnDefenderSelect visHide">
-                <h3 class="font-special">Defeated Enemies</h3>
-                <ul id="defeated" class="flex flex-row">
-                    <!-- <li class="placeHolder">
-                        <figure>&nbsp;<img>&nbsp;</figure>
-                    </li> -->
-                </ul>
-            </section>
+            <h3 class="font-special">Defeated Enemies</h3>
+            <ul id="defeated" class="flex flex-row">
+                <!-- <li class="placeHolder"> <figure>&nbsp;<img>&nbsp;</figure> </li> -->
+            </ul>
+        </section>
     </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/javascript/game.js"></script>
 </body>
 
