@@ -8,87 +8,7 @@
     <title>Star Wars Arena Combat RPG</title>
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <style>
-        .visHide {
-            visibility: hidden;
-        }
-
-        .locked {
-            pointer-events: none;
-        }
-
-        .char figure img {
-            max-height: 7rem;
-            max-width: 100%;
-            margin: 0.25rem auto;
-        }
-
-        /* .char .placeHolder {
-            visibility: hidden;
-            /* pointer-events: none; */
-        /*
-        } */
-        button#attack, button#restart {
-            /* margin: auto 1rem; */
-        }
-        button#attack:hover {
-            color: red;
-        }
-        button#attack.locked {
-            color: grey;
-        }
-        #fightSummary p {
-            margin-left: 1rem;
-        }
-        .char figure {
-            display: flex;
-            flex-flow: column nowrap;
-            border: 0.25rem white solid;
-            margin-bottom: 0.5rem;
-            margin-right: 0.5rem;
-            margin-left: 0.5rem;
-            background: white;
-        }
-
-        ul.char figure:hover {
-            border-color: black;
-        }
-
-        #player figure {
-            background: gold;
-        }
-
-        .fighter p {
-            text-align: center;
-        }
-
-        #defender figure {
-            background: darkslategray;
-            color: white;
-        }
-
-        #defeated figure {
-            background: black;
-            color: red;
-        }
-
-        #enemies figure {
-            background: red;
-            color: black;
-        }
-
-        .flex {
-            display: flex;
-        }
-
-        .flex-row {
-            flex-flow: row wrap;
-        }
-        .flex-col {
-            flex-flow: column nowrap;
-            justify-content: center;
-        }
-    </style>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -98,7 +18,7 @@
     </header>
     <main>
         <h3 class="font-special" style="display: inline-block">instructions:&nbsp;</h3><span id="instructions"></span>
-        <ul id="fighterLineup" class="char flex flex-row">
+        <ul id="fighterLineup" class="flex flex-row">
             <!-- <li class="placeHolder">
             <figure><img></figure>
         </li> -->
@@ -165,7 +85,7 @@
         <div class="flex flex-row">
             <section class="showOnPlayerSelect visHide">
                 <h3 class="font-special">Your Character</h3>
-                <ul id="player" class="char flex flex-row">
+                <ul id="player" class="flex flex-row">
                     <!-- <li class="placeHolder">
                                 <figure>&nbsp;<img>&nbsp;</figure>
                             </li> -->
@@ -178,7 +98,7 @@
             <section class="showOnDefenderSelect visHide">
                 <!-- <h2>Fight Section</h2> -->
                 <h3 class="font-special">Defender</h3>
-                <ul id="defender" class="char flex flex-row">
+                <ul id="defender" class="flex flex-row">
                     <!-- <li class="placeHolder">
                                             <figure>&nbsp;<img>&nbsp;</figure>
                                         </li> -->
@@ -189,7 +109,7 @@
 
         <section class="showOnPlayerSelect visHide">
             <h3 class="font-special">Enemies Left to Defeat</h3>
-            <ul id="enemies" class="char flex flex-row">
+            <ul id="enemies" class="flex flex-row">
                 <!-- <li class="placeHolder">
                     <figure>&nbsp;<img>&nbsp;</figure>
                 </li> -->
@@ -198,7 +118,7 @@
 
         <section class="showOnDefenderSelect visHide">
                 <h3 class="font-special">Defeated Enemies</h3>
-                <ul id="defeated" class="char flex flex-row">
+                <ul id="defeated" class="flex flex-row">
                     <!-- <li class="placeHolder">
                         <figure>&nbsp;<img>&nbsp;</figure>
                     </li> -->

@@ -9,29 +9,80 @@
   font-style: normal;
 }
 
-.font-special {
-  font-family: "StarJedi Special Edition";
+/* Utility Classes, style only */
+.font-special { font-family: "StarJedi Special Edition"; }
+
+.flex { display: flex; }
+.flex-row { flex-flow: row wrap; }
+.flex-col {
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+/* Utility Classes, js interactions */
+.visHide { visibility: hidden; }
+.locked { pointer-events: none; }
+
+body {
+  background-image: url("./../images/bg-MillFalc.jpeg"); /* Background pattern from Toptal Subtle Patterns */
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-left: 2rem;
 }
 
 h1 {
   font-size: 5rem;
 }
-/* font has a BIG descender that needs to be cleared */
+/* special font has a BIG descender that needs to be 'cleared' */
 h1.font-special {
-  margin-bottom: 3rem; 
+  margin-bottom: 3rem;
 }
 h3.font-special {
   margin-bottom: 0.75rem;
 }
 
-body {
-  /* color: #777777; */
-  background-image: url("./../images/bg-MillFalc.jpeg"); /* Background pattern from Toptal Subtle Patterns */
-  /* background-size: 100%; */
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  /* display: flex;
-  flex-direction: column; */
-  min-height: 100vh;
-  padding-left: 2rem;
+/* .char .placeHolder {
+            visibility: hidden;
+            /* pointer-events: none; */
+/*
+} */
+
+.fighter p {
+  text-align: center;
 }
+
+.fighter figure {
+  display: flex;
+  flex-flow: column nowrap;
+  border: 0.25rem white solid;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+  background: white;
+}
+
+.fighter figure:hover {
+  border-color: black;
+}
+
+.fighter figure img {
+  max-height: 7rem;
+  max-width: 100%;
+  margin: 0.25rem auto;
+}
+
+button#attack:hover {
+  color: red;
+}
+button#attack.locked {
+  color: grey;
+}
+
+#fightSummary p {
+  margin-left: 1rem;
+}
+
+#player   figure { background: gold;           color: black; }
+#enemies  figure { background: red;            color: black; }
+#defender figure { background: darkslategray;  color: white; }
+#defeated figure { background: black;          color: red;   }
