@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <style>
-        .toggleVisible {
+        .visHide {
             visibility: hidden;
         }
 
@@ -37,7 +37,9 @@
         button#attack.locked {
             color: grey;
         }
-
+        #fightSummary p {
+            margin-left: 1rem;
+        }
         .char figure {
             display: flex;
             flex-flow: column nowrap;
@@ -61,11 +63,13 @@
         }
 
         #defender figure {
-            background: black;
+            background: darkslategray;
             color: white;
         }
-        .defeated figure {
-            color:red;
+
+        #defeated figure {
+            background: black;
+            color: red;
         }
 
         #enemies figure {
@@ -159,7 +163,7 @@
         </ul>
 
         <div class="flex flex-row">
-            <section class="showOnPlayerSelect toggleVisible">
+            <section class="showOnPlayerSelect visHide">
                 <h3 class="font-special">Your Character</h3>
                 <ul id="player" class="char flex flex-row">
                     <!-- <li class="placeHolder">
@@ -168,10 +172,10 @@
                 </ul>
             </section>
             <div class="flex flex-col">
-                <button id="attack" class="font-special showOnDefenderSelect toggleVisible">Attack</button>
-                <button id="restart" class="font-special showOnGameOver toggleVisible">Restart</button>
+                <button id="attack" class="font-special showOnDefenderSelect visHide">Attack</button>
+                <button id="restart" class="font-special showOnGameOver visHide">Restart</button>
             </div>
-            <section class="showOnDefenderSelect toggleVisible">
+            <section class="showOnDefenderSelect visHide">
                 <!-- <h2>Fight Section</h2> -->
                 <h3 class="font-special">Defender</h3>
                 <ul id="defender" class="char flex flex-row">
@@ -180,10 +184,10 @@
                                         </li> -->
                 </ul>
             </section>
-            <div id="fightSummary" class="showOnDefenderSelect toggleVisible"></div>
+            <div id="fightSummary" class="showOnDefenderSelect visHide"></div>
         </div>
 
-        <section class="showOnPlayerSelect toggleVisible">
+        <section class="showOnPlayerSelect visHide">
             <h3 class="font-special">Enemies Left to Defeat</h3>
             <ul id="enemies" class="char flex flex-row">
                 <!-- <li class="placeHolder">
@@ -192,6 +196,14 @@
             </ul>
         </section>
 
+        <section class="showOnDefenderSelect visHide">
+                <h3 class="font-special">Defeated Enemies</h3>
+                <ul id="defeated" class="char flex flex-row">
+                    <!-- <li class="placeHolder">
+                        <figure>&nbsp;<img>&nbsp;</figure>
+                    </li> -->
+                </ul>
+            </section>
     </main>
     <script src="./assets/javascript/game.js"></script>
 </body>

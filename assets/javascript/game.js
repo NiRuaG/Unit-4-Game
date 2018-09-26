@@ -17,7 +17,7 @@ $(document).ready(function() {
       fighter1: SWFighter("Captain Phasma", 100, 10, 10),
       fighter2: SWFighter("Chewbacca", 100, 10, 10),
       fighter3: SWFighter("Finn", 100, 10, 10),
-      fighter4: SWFighter("Kylo Ren", 100, 10, 100)
+      fighter4: SWFighter("Kylo Ren", 100, 10, 10)
       // Luke     : null,
       // Poe      : null,
       // Rey      : null,
@@ -80,7 +80,7 @@ $(document).ready(function() {
       this.CHARACTERS.fighter1 = SWFighter("Captain Phasma", 100, 10, 10);
       this.CHARACTERS.fighter2 = SWFighter("Chewbacca", 100, 10, 10);
       this.CHARACTERS.fighter3 = SWFighter("Finn", 100, 10, 10);
-      this.CHARACTERS.fighter4 = SWFighter("Kylo Ren", 100, 10, 100);
+      this.CHARACTERS.fighter4 = SWFighter("Kylo Ren", 100, 10, 10);
 
       this.playerCharKey = "";
       this.defenderCharKey = "";
@@ -91,13 +91,14 @@ $(document).ready(function() {
   let DOM_IDs = {
     instructions: null,
     fighterLineup: null,
-    // fighter1     : null,
-    // fighter2     : null,
-    // fighter3     : null,
-    // fighter4     : null,
+    fighter1: null,
+    fighter2: null,
+    fighter3: null,
+    fighter4: null,
     player: null,
     enemies: null,
     defender: null,
+    defeated: null,
     attack: null,
     restart: null,
     fightSummary: null
@@ -110,26 +111,28 @@ $(document).ready(function() {
   const DOM_CLASS_Fighter_Name = "fighterName";
   const DOM_CLASS_Fighter_HP = "fighterHP";
 
-  const DOM_CLASS_VisToggle = "toggleVisible";
+  const DOM_CLASS_VisHide = "visHide";
   const DOM_CLASS_Lock = "locked";
   const DOM_CLASS_Defeated = "defeated";
   const DOM_CLASS_ShowOn_PlayerSelect = "showOnPlayerSelect";
   const DOM_CLASS_ShowOn_DefenderSelect = "showOnDefenderSelect";
   const DOM_CLASS_ShowOn_GameOver = "showOnGameOver";
 
+  let stateToggle = (classSelector, doHide) => {
+    $(`.${classSelector}`).toggleClass(DOM_CLASS_VisHide, doHide);
+  };
+
   let showInstr = text => {
     $(DOM_IDs.instructions).text(text);
   };
 
-  let stateToggle = classSelector => {
-    $(`.${classSelector}`).toggleClass(DOM_CLASS_VisToggle);
+  let addToFightSummary = text => {
+    $(DOM_IDs.fightSummary).append($("<p>").text(text));
   };
 
-  function choosePlayerCharacter(ele) {
-    // console.log(ele.id);
-
-    // set the game's player character to this fighter
-    swRPG_GAME.playerCharKey = ele.id;
+  function chosePlayerCharacter(ele) {
+    // show sections/elements related to this state
+    stateToggle(DOM_CLASS_ShowOn_PlayerSelect, false);
 
     // move the fighters from the line up into either the player's character or enemies section
     $(DOM_IDs.fighterLineup)
@@ -142,19 +145,24 @@ $(document).ready(function() {
     $(ele).addClass(DOM_CLASS_Lock);
   }
 
-  function chooseDefenderCharacter(ele) {
+  function choseDefenderCharacter(ele) {
+    // show sections/elements related to this step state
+    stateToggle(DOM_CLASS_ShowOn_DefenderSelect, false);
+
+    // move this fighter to the defender area
+    $(DOM_IDs.defender).append(ele);
+
     // Lock all enemies until fight is over
     $(DOM_IDs.enemies)
       .find(`.${DOM_CLASS_Fighter}`)
       .addClass(DOM_CLASS_Lock);
 
-    swRPG_GAME.defenderCharKey = ele.id;
-    $(DOM_IDs.defender).append(ele);
-  }
+    // remove any lock from attack button
+    $(DOM_IDs.attack).removeClass(DOM_CLASS_Lock);
 
-  let addToFightSummary = text => {
-    $(DOM_IDs.fightSummary).append($("<p>").text(text));
-  };
+    // clear any previous fight summary
+    $(DOM_IDs.fightSummary).empty();
+  }
 
   function updateFightSummary(fightResult, playerAttack) {
     $(DOM_IDs.fightSummary).empty();
@@ -182,39 +190,43 @@ $(document).ready(function() {
         `You have defeated 
                   ${swRPG_GAME.CHARACTERS[swRPG_GAME.defenderCharKey].Name}!`
       );
-    } else {
+    }
+    if (fightResult === swRPG_GAME.FIGHT_RESULTS.LOSS) {
       // "You have been defeated by {defender}"
       addToFightSummary(
         `You have been defeated by
               ${swRPG_GAME.CHARACTERS[swRPG_GAME.defenderCharKey].Name}!`
       );
-
-      addToFightSummary("Game Over");
     }
   }
 
   function clickCharacter(ele) {
     // console.log("--- Clicking Character ---");
     if (!swRPG_GAME.States.playerCharSelected) {
+      // update game state
       swRPG_GAME.States.playerCharSelected = true;
-      //console.log("State indicates this click means selecting player character");
-      choosePlayerCharacter(ele);
+      swRPG_GAME.playerCharKey = ele.id;
+
+      // update DOM elements related this new state
+      chosePlayerCharacter(ele);
+
       showInstr("Choose a Defender from the Enemies left.");
-      // toggle elements related to this state
-      stateToggle(DOM_CLASS_ShowOn_PlayerSelect);
     } else if (!swRPG_GAME.States.defenderSelected) {
-      // console.log("State indicates this click means selecting an enemy as the defender");
       if (ele.id === swRPG_GAME.playerCharKey) {
         // can't select yourself as defender - shouldn't be able to happen with locked class, but just in case
         return;
       }
+
+      // update game state
       swRPG_GAME.States.defenderSelected = true;
-      chooseDefenderCharacter(ele);
+      swRPG_GAME.defenderCharKey = ele.id;
+
+      // update DOM elements related to this new state
+      choseDefenderCharacter(ele);
+
       showInstr(
         "[Attack] the Defender until only one of you is left standing!"
       );
-      // toggle elements related to this step state
-      stateToggle(DOM_CLASS_ShowOn_DefenderSelect);
     }
   }
 
@@ -247,24 +259,40 @@ $(document).ready(function() {
       }
 
       if (fightResult === swRPG_GAME.FIGHT_RESULTS.LOSS) {
-        $(DOM_IDs.player).find(`.${DOM_CLASS_Fighter}`).addClass(DOM_CLASS_Defeated);
+        $(DOM_IDs.player)
+          .find(`.${DOM_CLASS_Fighter}`)
+          .addClass(DOM_CLASS_Defeated);
 
         swRPG_GAME.States.gameOver = true;
-        // toggle elements related to this state
-        stateToggle(DOM_CLASS_ShowOn_GameOver);
-        showInstr("Press [Restart] to play again.");
       }
 
       if (fightResult === swRPG_GAME.FIGHT_RESULTS.WIN) {
-          $(DOM_IDs.defender).find(`.${DOM_CLASS_Fighter}`).addClass(DOM_CLASS_Defeated);
         // WIN
-        // check if any left? " Now choose another enemy"
+        //   $(DOM_IDs.defender).find(`.${DOM_CLASS_Fighter}`).addClass(DOM_CLASS_Defeated);
+        $(DOM_IDs.defeated).append(DOM_IDs[swRPG_GAME.defenderCharKey]);
 
-        // unlock remaining enemies
-        $(DOM_IDs.enemies)
-          .find(`.${DOM_CLASS_Fighter}`)
-          .removeClass(DOM_CLASS_Lock);
-        showInstr("Choose a new Defender from the Enemies left.");
+        // check if any enemies left
+        if ($(DOM_IDs.enemies).find(`.${DOM_CLASS_Fighter}`).length === 0) {
+          addToFightSummary(
+            "You have defeated all your enemies and are victorious!!"
+          );
+          swRPG_GAME.States.gameOver = true;
+        } else {
+          // there are enemies left
+          // unlock remaining enemies
+          $(DOM_IDs.enemies)
+            .find(`.${DOM_CLASS_Fighter}`)
+            .removeClass(DOM_CLASS_Lock);
+
+          showInstr("Choose a new Defender from the Enemies left.");
+        }
+      }
+
+      if (swRPG_GAME.States.gameOver) {
+        addToFightSummary("Game Over");
+        showInstr("Press [Restart] to play again.");
+        // show elements related to this state
+        stateToggle(DOM_CLASS_ShowOn_GameOver, false);
       }
     }
   }
@@ -278,7 +306,7 @@ $(document).ready(function() {
     DOM_FIGHTERS.forEach(f => {
       $(`#${f} .${DOM_CLASS_Fighter_Name}`).text(swRPG_GAME.CHARACTERS[f].Name);
       $(`#${f} .${DOM_CLASS_Fighter_HP}`).text(swRPG_GAME.CHARACTERS[f].HP);
-      $(`#${f}`).removeClass(DOM_CLASS_VisToggle);
+      $(`#${f}`).removeClass(DOM_CLASS_VisHide);
       $(DOM_IDs.fighterLineup).append($(`#${f}`));
     });
 
@@ -286,12 +314,13 @@ $(document).ready(function() {
     $(`.${DOM_CLASS_Lock}`).removeClass(DOM_CLASS_Lock);
     $(`.${DOM_CLASS_Defeated}`).removeClass(DOM_CLASS_Defeated);
 
+    // hide all the DOM classes that start out hidden
     [
       DOM_CLASS_ShowOn_PlayerSelect,
       DOM_CLASS_ShowOn_DefenderSelect,
       DOM_CLASS_ShowOn_GameOver
     ].forEach(c => {
-      stateToggle(c);
+      stateToggle(c, true);
     });
 
     showInstr("Choose your Character!");
