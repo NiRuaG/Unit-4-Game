@@ -76,10 +76,10 @@ $(document).ready(function () {
             });
 
             // Reset fighter stats
-            this.Fighters.fighter1 = SWFighter("Captain Phasma", 100, 10, 10);
-            this.Fighters.fighter2 = SWFighter("Chewbacca", 100, 10, 10);
-            this.Fighters.fighter3 = SWFighter("Finn", 100, 10, 10);
-            this.Fighters.fighter4 = SWFighter("Kylo Ren", 100, 10, 10);
+            this.Fighters.fighter1 = SWFighter("Captain Phasma", 125, 11,  5);
+            this.Fighters.fighter2 = SWFighter("Chewbacca"     , 215,  4, 10);
+            this.Fighters.fighter3 = SWFighter("Kylo Ren"      , 180,  2, 20);
+            this.Fighters.fighter4 = SWFighter("Finn"          ,  65, 12, 30);
 
             // Reset keys to player & defender fighters
             this.playerCharKey = "";
@@ -209,6 +209,7 @@ $(document).ready(function () {
             chosePlayer(ele);
 
             showInstr("Choose a Defender from the Enemies left.");
+            
         } else if (!swRPG_GAME.States.defenderSelected) {
             if (ele.id === swRPG_GAME.playerCharKey) { // can't select yourself as defender - shouldn't be able to happen with locked class, but just in case
                 return;
@@ -333,6 +334,13 @@ $(document).ready(function () {
     });
 
     showInstr("Choose your Character!");
+    console.log(
+        "For testing, here are the paths to victory:",
+        "\n\n[    Easiest] Captain Phasma = Any path EXCEPT Finn > Kylo Ren > Chewbacca.",
+        "\n\n[2nd Easiest]      Chewbacca = Any path EXCEPT one that STARTS with Finn.",
+        "\n\n[2nd Hardest]       Kylo Ren = Only the paths that START with Captain Phasma.",
+        "\n\n[    Hardest]           Finn = Only the path Captain Phasma > Chewbacca > Kylo Ren."
+    );
 
     ////// CLICK FUNCTIONS //////
     $(`.${DOM_CLASS_Fighter}`).on("click", function () {

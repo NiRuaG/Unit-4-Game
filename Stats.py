@@ -5,23 +5,24 @@ class fighter():
     self.atk = b_atk
     self.rx = rx
 
-F4RX, F3RX, F2RX, F1RX = 20, 15, 10, 5
+F4RX, F3RX, F2RX, F1RX = 30, 20, 10, 5
 
-# f4 | f1_ _ _ _| f2_ _ _ | f3 _ _ _ | 1
-F4HP = F1RX*3 + F2RX*2 + F3RX*2 + 1
+# f4 | f1_ _ _ _ _| f2_ _ _ | f3 _ _ | >=1
+F4HP = F1RX*4 + F2RX*2 + F3RX*1 + 5
 
 F4ATK = 12
-F1HP = F4ATK*9 # (1+2+3, +4] (6 , 10]
+print("F4HP", F4HP)
+F1HP = F4ATK*10+5 # (1+2+3+4, +5] (10,15]
 print("F1HP", F1HP)
-F2HP = F4ATK*14 # (5+6, +7]  (11,18]
-F3HP = F4ATK*20 # (8+9, +10] (17,27]
+F2HP = F4ATK*18-1 # (6+7, +8]  (13,21]
+print("F2HP", F2HP)
+F3HP = F4ATK*15 # (9, +10] (9,19]
+print("F3HP", F3HP)
 
 F1ATK = 11
-F2ATK, F3ATK = 1,1
-#F1HP, F1ATK, F1RX = 100, 16,  5
-#F2HP, F2ATK, F2RX = 100,  1, 10
-#F3HP, F3ATK, F3RX =  80,  1, 15
-#F4HP, F4ATK, F4RX =  95,  1, 20
+F2ATK = 4
+F3ATK = 2
+
 
 f1 = fighter(F1HP, F1ATK, F1RX)
 f2 = fighter(F2HP, F2ATK, F2RX)
@@ -67,7 +68,7 @@ def fightSeq(fm, fseq, result):
 print("FIGHTER 4")
 #1
 reset(f1,f2,f3,f4)
-print("123" if not fightSeq(f4,[f1,f2,f3],1) else "")
+print("!!!123" if not fightSeq(f4,[f1,f2,f3],1) else "")
 #2
 reset(f1,f2,f3,f4)
 print("132" if not fightSeq(f4,[f1,f3,f2],0) else "")
@@ -102,43 +103,43 @@ reset(f1,f2,f3,f4)
 print("423" if not fightSeq(f1,[f4,f2,f3],1) else "")
 #6
 reset(f1,f2,f3,f4)
-print("432" if not fightSeq(f1,[f4,f3,f2],0) else "")
+print("!!!432" if not fightSeq(f1,[f4,f3,f2],0) else "")
 
 print("FIGHTER 2")
 #1
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f1,f3,f4])
+print("134" if not fightSeq(f2,[f1,f3,f4],1) else "")
 #2
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f1,f4,f3])
+print("143" if not fightSeq(f2,[f1,f4,f3],1) else "")
 #3
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f3,f1,f4])
+print("314" if not fightSeq(f2,[f3,f1,f4],1) else "")
 #4
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f3,f4,f1])
+print("341" if not fightSeq(f2,[f3,f4,f1],1) else "")
 #5
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f4,f1,f3])
+print("413" if not fightSeq(f2,[f4,f1,f3],0) else "")
 #6
 reset(f1,f2,f3,f4)
-fightSeq(f2,[f4,f3,f1])
+print("431" if not fightSeq(f2,[f4,f3,f1],0) else "")
 print("FIGHTER 3")
 #1
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f1,f2,f4])
+print("124" if not fightSeq(f3,[f1,f2,f4],1) else "")
 #2
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f1,f4,f2])
+print("142" if not fightSeq(f3,[f1,f4,f2],1) else "")
 #3
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f2,f1,f4])
+print("214" if not fightSeq(f3,[f2,f1,f4],0) else "")
 #4
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f2,f4,f1])
+print("241" if not fightSeq(f3,[f2,f4,f1],0) else "")
 #5
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f4,f1,f2])
+print("412" if not fightSeq(f3,[f4,f1,f2],0) else "")
 #6
 reset(f1,f2,f3,f4)
-fightSeq(f3,[f4,f2,f1])
+print("421" if not fightSeq(f3,[f4,f2,f1],0) else "")
