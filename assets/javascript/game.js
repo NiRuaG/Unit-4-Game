@@ -92,22 +92,23 @@ $(document).ready(function () {
         instructions : null,
 
         fighterLineup: null,
-        fighter1     : null,
-        fighter2     : null,
-        fighter3     : null,
-        fighter4     : null,
 
-          playerArea : null,
-         enemiesArea : null,
-        defenderArea : null,
-        defeatedArea : null,
+        fighter1: null,
+        fighter2: null,
+        fighter3: null,
+        fighter4: null,
 
-         attackBtn   : null,
-        restartBtn   : null,
+          playerArea: null,
+         enemiesArea: null,
+        defenderArea: null,
+        defeatedArea: null,
 
-        fightSummary : null
+         attackBtn: null,
+        restartBtn: null,
+
+        fightSummary: null
     };
-
+    
     const DOM_FIGHTERS = ["fighter1", "fighter2", "fighter3", "fighter4"];
 
     // DOM classes
@@ -171,29 +172,28 @@ $(document).ready(function () {
     function updateFightSummary(fightResult, playerAttack) {
         $(DOM_IDs.fightSummary).empty();
 
-        let defenderName = swRPG_GAME.Fighters[swRPG_GAME.defenderCharKey].Name;
+        let defender = swRPG_GAME.Fighters[swRPG_GAME.defenderCharKey];
 
         // "You attacked {defender} for {atk} damage"
         addToFightSummary(
-            `You attacked ${defenderName} for ${playerAttack} damage.` );
+            `You attacked ${defender.Name} for ${playerAttack} damage.` );
 
         if (fightResult !== swRPG_GAME.FIGHT_RESULTS.WIN) { // either a loss or still fighting
             // "{defender} attacked you back for {counter} damage"
             addToFightSummary(
-                `${defenderName} attacked you back for 
-                 ${swRPG_GAME.Fighters[swRPG_GAME.defenderCharKey].Counter} damage.` );
+                `${defender.Name} attacked you back for ${defender.Counter} damage.` );
         }
 
         if (fightResult === swRPG_GAME.FIGHT_RESULTS.WIN) {
             // "You have defeated {defender}"
             addToFightSummary(
-                `You have defeated ${defenderName}!` );
+                `You have defeated ${defender.Name}!` );
         }
 
         else if (fightResult === swRPG_GAME.FIGHT_RESULTS.LOSS) {
             // "You have been defeated by {defender}"
             addToFightSummary(
-                `You have been defeated by ${defenderName}!` );
+                `You have been defeated by ${defender.Name}!` );
         }
 
     }
