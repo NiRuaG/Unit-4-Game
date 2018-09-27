@@ -143,8 +143,9 @@ $(document).ready(function () {
         // Move the fighters from the line up into either the Player area or Enemies area
         $(DOM_IDs.fighterLineup)
             .find(`.${DOM_CLASS_Fighter}`)
-            .each(function (_, v) {
-                $(v.id === ele.id ? DOM_IDs.playerArea : DOM_IDs.enemiesArea).append(v);
+            .each(function (_, fighterEl) {
+                // choose which area to move the fighter depending on if the fighter element's id is the same as the chosen Player (ele id)
+                $(fighterEl.id === ele.id ? DOM_IDs.playerArea : DOM_IDs.enemiesArea).append(fighterEl); 
             });
 
         // Lock in the selected player's character
